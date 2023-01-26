@@ -6,15 +6,16 @@ const cors = require("cors");
 require("dotenv").config();
 
 app.use(cors());
-
+const port = process.env.REACT_CLIENT || "http://localhost:3000";
+const runPort = process.env.PORT || 3001;
 const server = http.createServer(app);
 app.get("/test", function (req, res) {
   res.send("hello world");
 });
-console.log(process.env.REACT_CLIENT);
+console.log(port);
 const io = new Server(server, {
   cors: {
-    origin: process.env.REACT_CLIENT || "http://localhost:3000",
+    origin: port,
     methods: ["GET", "POST"],
   },
 });
@@ -40,6 +41,7 @@ io.on("connection", (socket) => {
   isConnected = true;
 });
 
-server.listen(3001, () => {
-  console.log("SERVER IS RUNNING");
+server.listen(runPort, () => {
+  console.log("servers cors origin is ", port);
+  console.log("SERVER IS RUNNING on port", runPort);
 });
