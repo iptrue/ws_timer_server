@@ -8,7 +8,9 @@ require("dotenv").config();
 app.use(cors());
 
 const server = http.createServer(app);
-
+app.get("/test", function (req, res) {
+  res.send("hello world");
+});
 console.log(process.env.REACT_CLIENT);
 const io = new Server(server, {
   cors: {
