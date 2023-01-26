@@ -24,7 +24,7 @@ io.on("connection", (socket) => {
       console.log(value);
       io.emit("receive_message", value, userNum);
       value = value + 1;
-      if (value > 15) {
+      if (value > 3) {
         value = 0;
         userNum = userNum + 1;
         if (userNum > 4) {
@@ -34,8 +34,6 @@ io.on("connection", (socket) => {
     }, 1000);
   }
   isConnected = true;
-  // console.log(data);
-  // io.emit("receive_message", data);
 });
 
 server.listen(3001, () => {
