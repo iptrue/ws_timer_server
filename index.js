@@ -29,7 +29,7 @@ io.on("connection", (socket) => {
       console.log(value);
       io.emit("receive_message", value, userNum);
       value = value + 1;
-      if (value > 3) {
+      if (value > 120) {
         value = 0;
         userNum = userNum + 1;
         if (userNum > 4) {
